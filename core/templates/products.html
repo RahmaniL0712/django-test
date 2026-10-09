@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Produktet tona</h1>
+{% for p in products %}
+{{p.product_name}}<br>
+{% endfor %}
+<h1>Furnizuesit tane</h1>
+{% for v in vendors %}
+{{v.vendor_name}}<br>
+{% endfor %}
+</body>
+</html>
