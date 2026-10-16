@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Klientët tanë{% endblock %}
+
+{% block content %}
+<main class="page">
+    <header class="intro">
+        <p class="eyebrow">Marrëdhënie që zgjasin</p>
+        <h1>Klientët tanë</h1>
+        <p class="intro-copy">Njerëzit dhe bizneset që na besojnë çdo ditë janë pjesa më e rëndësishme e punës sonë.</p>
+    </header>
+
+    <section aria-labelledby="clients-heading">
+        <div class="section-heading">
+            <h2 id="clients-heading">Njihuni me klientët tanë</h2>
+            <span class="client-count">{{ clients|length }} klientë</span>
+        </div>
+
+        {% if clients %}
+        <div class="client-grid">
+            {% for client in clients %}
+            <article class="client-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">{{ client.client_name|first|upper }}</div>
+                    <h3>{{ client.client_name }}</h3>
+                </div>
+                <dl class="client-details">
+                    <div class="detail">
+                        <dt>Adresa</dt>
+                        <dd>{{ client.client_address }}</dd>
+                    </div>
+                    <div class="detail">
+                        <dt>Telefoni</dt>
+                        <dd><a href="tel:{{ client.phone_number }}">{{ client.phone_number }}</a></dd>
+                    </div>
+                </dl>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">Lista e klientëve do të shfaqet këtu së shpejti.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

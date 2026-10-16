@@ -1,11 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-</head>
-<body>
-    <h1>Kjo eshte faqja About Us</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Rreth nesh{% endblock %}
+
+{% block content %}
+<main class="page">
+    <header class="intro">
+        <p class="eyebrow">Njihuni me ne</p>
+        <h1>Rreth nesh</h1>
+        <p class="intro-copy">Një vend për të eksploruar produktet, furnitorët dhe klientët tanë.</p>
+    </header>
+
+    <section aria-labelledby="about-heading">
+        <div class="section-heading">
+            <h2 id="about-heading">Çfarë mund të gjeni këtu</h2>
+        </div>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">P</div>
+                    <h3>Produktet</h3>
+                </div>
+                <p>Shfletoni listën e produkteve me ngjyrat, çmimet dhe gjendjen e stokut.</p>
+            </article>
+            <article class="feature-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">F</div>
+                    <h3>Furnitorët</h3>
+                </div>
+                <p>Gjeni informacionin e regjistruar për furnitorët tanë.</p>
+            </article>
+            <article class="feature-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">K</div>
+                    <h3>Klientët</h3>
+                </div>
+                <p>Shihni listën e klientëve dhe informacionin e tyre të kontaktit.</p>
+            </article>
+        </div>
+    </section>
+</main>
+{% endblock %}

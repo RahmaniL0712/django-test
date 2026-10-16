@@ -14,4 +14,9 @@ class Vendor(models.Model):
     vendor_nipt = models.CharField(max_length=14)
     vendor_address = models.CharField(max_length=250)
     
+class Client(models.Model):
+    client_name = models.CharField(max_length=50)
+    client_address = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=13)
+    
     

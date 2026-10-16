@@ -1,18 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Produktet tona</h1>
-{% for p in products %}
-{{p.product_name}}<br>
-{% endfor %}
-<h1>Furnizuesit tane</h1>
-{% for v in vendors %}
-{{v.vendor_name}}<br>
-{% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Produktet{% endblock %}
+
+{% block content %}
+<main class="page">
+    <header class="intro">
+        <p class="eyebrow">Katalogu ynë</p>
+        <h1>Produktet</h1>
+        <p class="intro-copy">Shfletoni produktet dhe kontrolloni informacionin për secilin artikull.</p>
+    </header>
+
+    <section aria-labelledby="products-heading">
+        <div class="section-heading">
+            <h2 id="products-heading">Produktet e disponueshme</h2>
+            <span class="client-count">{{ products|length }} produkte</span>
+        </div>
+
+        {% if products %}
+        <div class="client-grid">
+            {% for product in products %}
+            <article class="client-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">{{ product.product_name|first|upper }}</div>
+                    <h3>{{ product.product_name }}</h3>
+                </div>
+                <dl class="client-details">
+                    <div class="detail">
+                        <dt>Ngjyra</dt>
+                        <dd>{{ product.colors }}</dd>
+                    </div>
+                    <div class="detail">
+                        <dt>Çmimi</dt>
+                        <dd>{{ product.price }}</dd>
+                    </div>
+                    <div class="detail">
+                        <dt>Stoku</dt>
+                        <dd>{{ product.stock }}</dd>
+                    </div>
+                </dl>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">Nuk ka produkte të disponueshme për momentin.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

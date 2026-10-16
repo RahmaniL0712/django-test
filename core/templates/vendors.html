@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Furnitorët tanë{% endblock %}
+
+{% block content %}
+<main class="page">
+    <header class="intro">
+        <p class="eyebrow">Partnerët tanë</p>
+        <h1>Furnitorët tanë</h1>
+        <p class="intro-copy">Njihuni me furnitorët dhe shikoni informacionin e tyre të regjistruar.</p>
+    </header>
+
+    <section aria-labelledby="vendors-heading">
+        <div class="section-heading">
+            <h2 id="vendors-heading">Lista e furnitorëve</h2>
+            <span class="client-count">{{ vendors|length }} furnitorë</span>
+        </div>
+
+        {% if vendors %}
+        <div class="client-grid">
+            {% for vendor in vendors %}
+            <article class="client-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">{{ vendor.vendor_name|first|upper }}</div>
+                    <h3>{{ vendor.vendor_name }}</h3>
+                </div>
+                <dl class="client-details">
+                    <div class="detail">
+                        <dt>NIPT</dt>
+                        <dd>{{ vendor.vendor_nipt }}</dd>
+                    </div>
+                    <div class="detail">
+                        <dt>Adresa</dt>
+                        <dd>{{ vendor.vendor_address }}</dd>
+                    </div>
+                </dl>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">Nuk ka furnitorë të regjistruar për momentin.</p>
+        {% endif %}
+    </section>
+</main>
+{% endblock %}

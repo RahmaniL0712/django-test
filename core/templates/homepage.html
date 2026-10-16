@@ -1,11 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Ketu jemi tek faqja kryesore.</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Kryefaqja{% endblock %}
+
+{% block content %}
+<main class="page">
+    <header class="intro">
+        <p class="eyebrow">Mirë se vini</p>
+        <h1>Këtu fillon udhëtimi juaj</h1>
+        <p class="intro-copy">Eksploroni produktet, njihuni me furnitorët dhe zbuloni më shumë rreth klientëve tanë.</p>
+    </header>
+
+    <section aria-labelledby="explore-heading">
+        <div class="section-heading">
+            <h2 id="explore-heading">Eksploroni faqen</h2>
+        </div>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">P</div>
+                    <h3>Produktet</h3>
+                </div>
+                <p>Shikoni produktet e disponueshme dhe detajet e inventarit.</p>
+                <p><a href="{% url 'all_products' %}">Shfletoni produktet</a></p>
+            </article>
+            <article class="feature-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">F</div>
+                    <h3>Furnitorët</h3>
+                </div>
+                <p>Njihuni me furnitorët tanë dhe informacionin e tyre.</p>
+                <p><a href="{% url 'vendors' %}">Shihni furnitorët</a></p>
+            </article>
+            <article class="feature-card">
+                <div class="card-top">
+                    <div class="client-mark" aria-hidden="true">K</div>
+                    <h3>Klientët</h3>
+                </div>
+                <p>Shikoni klientët tanë dhe të dhënat e kontaktit.</p>
+                <p><a href="{% url 'clients' %}">Shihni klientët</a></p>
+            </article>
+        </div>
+    </section>
+</main>
+{% endblock %}
