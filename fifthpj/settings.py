@@ -121,8 +121,21 @@ STATIC_URL = 'static/'
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
+# settings.py
 MAILERS = {
-    'default': {
-        'BACKEND': 'django.core.mail.backends.console.EmailBackend',
-    },
+    "default": {
+        "BACKEND": "django.core.mail.backends.smtp.EmailBackend",
+        "OPTIONS": {
+            "host": "smtp.gmail.com",          # Replace with your SMTP server
+            "port": 465,                       # 587 for TLS, 465 for SSL
+            "use_tls": False,                   # Set to True if using port 587
+            "use_ssl": True,                  # Set to True if using port 465
+            "username": "yourname@gmail.com",
+            "password": "app pass here",   # Avoid regular passwords; use an app-specific password
+            "timeout": 10,
+        },
+    }
 }
+
+DEFAULT_FROM_EMAIL = "Emer Mbiemer <yourname@gmail.com>"
+

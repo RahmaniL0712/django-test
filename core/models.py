@@ -19,4 +19,11 @@ class Client(models.Model):
     client_address = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=13)
     
+class FormSubmissions(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.CharField()
+    ip_address = models.GenericIPAddressField()
+
+    
     

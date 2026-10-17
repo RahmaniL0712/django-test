@@ -2,13 +2,114 @@
 
 {% block title %}Kontakt{% endblock %}
 
+{% block extra_head %}
+<style>
+    .contact-form {
+        display: grid;
+        gap: 18px;
+    }
+
+    .contact-form label {
+        display: grid;
+        gap: 7px;
+        color: var(--olive-dark);
+        font-size: 0.92rem;
+        font-weight: 600;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid rgb(106 121 93 / 30%);
+        border-radius: 10px;
+        background: var(--paper);
+        color: var(--ink);
+        font: inherit;
+    }
+
+    .contact-form textarea {
+        min-height: 140px;
+        resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: var(--olive);
+        outline: 3px solid rgb(106 121 93 / 18%);
+    }
+
+    .form-error {
+        margin: 0;
+        color: #9b3030;
+        font-size: 0.88rem;
+    }
+
+    .form-button {
+        justify-self: start;
+        padding: 12px 20px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--olive);
+        color: white;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+    }
+
+    .form-button:hover,
+    .form-button:focus-visible {
+        background: var(--olive-dark);
+    }
+
+    .form-success {
+        margin: 0 0 20px;
+        padding: 14px 18px;
+        border: 1px solid rgb(106 121 93 / 25%);
+        border-radius: 12px;
+        background: white;
+        color: var(--olive-dark);
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <main class="page">
     <header class="intro">
         <p class="eyebrow">Jemi këtu për ju</p>
         <h1>Na kontaktoni</h1>
-        <p class="intro-copy">Për të gjetur informacionin që ju nevojitet, vizitoni seksionet përkatëse më poshtë.</p>
+        <p class="intro-copy">Na dërgoni një mesazh duke plotësuar formularin. Fushat shënohen si të detyrueshme.</p>
     </header>
+
+    <section aria-labelledby="contact-form-heading">
+        <div class="section-heading">
+            <h2 id="contact-form-heading">Dërgoni një mesazh</h2>
+        </div>
+        <article class="feature-card">
+            {% if submitted %}
+            <p class="form-success" role="status">Faleminderit! Mesazhi juaj u regjistrua me sukses.</p>
+            {% endif %}
+
+            <form class="contact-form" method="post" action="{% url 'contact' %}">
+                {% csrf_token %}
+                {% for field in form %}
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                    {{ field }}
+                    {% for error in field.errors %}
+                    <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </label>
+                {% endfor %}
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <p class="form-error">{{ error }}</p>
+                {% endfor %}
+                {% endif %}
+                <button class="form-button" type="submit">Dërgo mesazhin</button>
+            </form>
+        </article>
+    </section>
 
     <section aria-labelledby="contact-heading">
         <div class="section-heading">
